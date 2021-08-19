@@ -33,6 +33,7 @@ $ cd && git clone https://github.com/karaage0703/depthai_theremin
 ```
 
 ## Usage
+Launch Sonic Pi and Execute following commands:
 
 ```sh
 $ cd ~/depthai_theremin
