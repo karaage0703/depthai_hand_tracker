@@ -29,14 +29,14 @@ $ pip3 install python-sonic
 
 Download files:
 ```sh
-$ cd && git clone https://github.com/karaage0703/depthai_theremin
+$ cd && git clone git clone https://github.com/karaage0703/depthai_hand_tracker
 ```
 
 ## Usage
 Launch Sonic Pi and Execute following commands:
 
 ```sh
-$ cd ~/depthai_theremin
+$ cd ~/depthai_hand_tracker/examples/theremin/
 $ python3 theremin.py
 ```
 
