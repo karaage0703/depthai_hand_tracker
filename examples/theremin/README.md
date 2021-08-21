@@ -40,6 +40,14 @@ $ cd ~/depthai_hand_tracker/examples/theremin/
 $ python3 theremin.py
 ```
 
+If you want to edge mode for speed up, execute following commands:
+
+```sh
+$ cd ~/depthai_hand_tracker/examples/theremin/
+$ python3 theremin.py -e
+```
+
+
 ## License
 This software is released under the MIT License, see LICENSE.txt.
 

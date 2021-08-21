@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 import sys
 sys.path.append("../..")
-from HandTrackerEdge import HandTracker
 from HandTrackerThereminRenderer import HandTrackerRenderer
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-e', '--edge', action="store_true", default=True,
+parser.add_argument('-e', '--edge', action="store_true",
                     help="Use Edge mode (postprocessing runs on the device)")
 parser_tracker = parser.add_argument_group("Tracker arguments")
 parser_tracker.add_argument('-i', '--input', type=str,
@@ -21,7 +20,7 @@ parser_tracker.add_argument('-t', '--trace', action="store_true",
                             help="Print some debug messages")
 parser_renderer = parser.add_argument_group("Renderer arguments")
 parser_renderer.add_argument('-o', '--output',
-                             help="Path to output video file")
+                            help="Path to output video file")
 args = parser.parse_args()
 
 if args.edge:
