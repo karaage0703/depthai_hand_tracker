@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from time import sleep
+from pymycobot.mycobot import MyCobot
 
 LINES_HAND = [[0,1],[1,2],[2,3],[3,4],
             [0,5],[5,6],[6,7],[7,8],
@@ -14,6 +15,7 @@ class HandTrackerRenderer:
                 output=None):
 
         self.tracker = tracker
+        self.mycobot = MyCobot('/dev/tty.SLAB_USBtoUART')
 
         # Rendering flags
         if self.tracker.use_lm:
@@ -40,8 +42,9 @@ class HandTrackerRenderer:
             self.output = cv2.VideoWriter(output,fourcc,self.tracker.video_fps,(self.tracker.img_w, self.tracker.img_h))
 
         self.robot_calib_flag = False
-        self.robot_base_position = [0, 0, 0]
-        self.robot_current_position = [0, 0, 0]
+        self.hand_base_position = [0, 0, 0]
+        # self.robot_current_position = [0, 0, 0]
+        self.mycobot_base_coords = [0, 0, 0]
 
     def norm2abs(self, x_y):
         x = int(x_y[0] * self.tracker.frame_size - self.tracker.pad_w)
@@ -141,9 +144,38 @@ class HandTrackerRenderer:
 
     def robot_calibration(self, hands):
         self.robot_calib_flag = True
+        self.mycobot_base_coords = self.mycobot.get_coords()
         for hand in hands:
-            self.robot_base_position = hand.xyz
-        print(self.robot_base_position)
+            self.hand_base_position = hand.xyz
+        print(self.hand_base_coords)
+        print(self.mycobot_base_position)
+
+    def get_hand_position(self, hands):
+        if not self.robot_calib_flag:
+            return False
+        else:
+            diff_position = [0, 0, 0]
+            new_coords = [0, 0, 0]
+            try:
+                for hand in hands:
+                    for i in range(3):
+                        diff_position[i] = hand.xyz[i] - self.hand_base_position[i]
+            except:
+                return False
+
+            if diff_position == [0, 0, 0] or new_coords == [0, 0, 0]:
+                return False
+            else:
+                new_coords[0] = self.mycobot_base_coords[0] + diff_position[2]
+                new_coords[1] = self.mycobot_base_coords[1] + diff_position[0]
+                new_coords[2] = self.mycobot_base_coords[2] + diff_position[1]
+                print(self.mycobot_base_coords)
+                print(new_coords)
+                # mycobot.
+                # self.mycobot.send_coords(new_coords, 10, 0)
+
+
+        return diff_position
 
     def exit(self):
         if self.output:
