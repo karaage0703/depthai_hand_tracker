@@ -56,8 +56,7 @@ while True:
     # Draw hands
     frame = renderer.draw(frame, hands)
     key = renderer.waitKey(delay=1)
-    position = renderer.get_hand_position(hands)
-    print(position)
+    renderer.get_hand_position(hands)
     if key == 27 or key == ord('q'):
         break
     elif key == ord('c'):
