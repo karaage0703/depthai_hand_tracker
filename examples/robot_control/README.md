@@ -2,6 +2,7 @@
 
 Running Google Mediapipe Hand Tracking models on [DepthAI](https://docs.luxonis.com/en/gen2/) hardware (OAK-1, OAK-D, ...)
 
+https://user-images.githubusercontent.com/5562157/131221555-2f8ccbe7-1608-4228-a45b-7cfdbc24f805.mp4
 
 ## Dependency
 
