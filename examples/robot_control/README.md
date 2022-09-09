@@ -1,4 +1,4 @@
-# Theremin with DepthAI
+# Remote Control Robot with DepthAI
 
 Running Google Mediapipe Hand Tracking models on [DepthAI](https://docs.luxonis.com/en/gen2/) hardware (OAK-1, OAK-D, ...)
 
